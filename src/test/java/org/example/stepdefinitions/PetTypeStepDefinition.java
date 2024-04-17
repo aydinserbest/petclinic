@@ -5,12 +5,17 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.annotations.Steps;
 import org.example.actions.NavigateActions;
+import org.example.pettypes.DisplayedPetTypesList;
 
 import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class PetTypeStepDefinition {
     @Steps  //serenity-core dependency
     NavigateActions navigate;
+    @Steps
+    DisplayedPetTypesList displayedPetTypes;
     @Given("Carrie is a pet clinic customer")
     public void carrie_is_a_pet_clinic_customer() {
         navigate.toThePetClinicApplication();
@@ -22,7 +27,9 @@ public class PetTypeStepDefinition {
 
     }
     @Then("she should see t least following:")
-    public void she_should_see_t_least_following(List<String> petTypes) {
+    public void she_should_see_t_least_following(List<String> expectedPetTypes) {
+        List<String> actualPetTypes = displayedPetTypes.thatAreVisible();
+        assertThat(actualPetTypes.containsAll(expectedPetTypes)).isTrue();
 
     }
 }

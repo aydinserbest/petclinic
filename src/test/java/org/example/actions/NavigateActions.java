@@ -10,6 +10,8 @@ public class NavigateActions extends UIInteractionSteps {
     }
     @Step("Open the pet type page")
     public void toTheListOfPetTypes() {
-        find(MenuBar.PET_TYPES_ENTER).click();
+
+        $(MenuBar.PET_TYPES_ENTER).click();
+        //find(MenuBar.PET_TYPES_ENTER).click();
     }
 }
