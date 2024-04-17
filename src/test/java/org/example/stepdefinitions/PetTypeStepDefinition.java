@@ -29,7 +29,7 @@ public class PetTypeStepDefinition {
     @Then("she should see t least following:")
     public void she_should_see_t_least_following(List<String> expectedPetTypes) {
         List<String> actualPetTypes = displayedPetTypes.thatAreVisible();
-        assertThat(actualPetTypes.containsAll(expectedPetTypes)).isTrue();
+        assertThat(actualPetTypes).containsAll(expectedPetTypes);
 
     }
 }
